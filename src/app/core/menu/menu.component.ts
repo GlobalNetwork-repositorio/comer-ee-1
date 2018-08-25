@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-menu',
-  template: `
+  template: `  
     <mat-nav-list appAccordion class="navigation">
       <mat-list-item appAccordionLink *ngFor="let menuitem of menuService.getAll()" group="{{menuitem.state}}">
         <a appAccordionToggle class="relative" [routerLink]="['/', menuitem.state]" *ngIf="menuitem.type === 'link'">
@@ -29,6 +29,13 @@ import { TranslateService } from '@ngx-translate/core';
         <a appAccordionToggle class="relative" href="javascript:;" *ngIf="menuitem.type === 'sub'">
           <mat-icon>{{ menuitem.icon }}</mat-icon>
           <span>{{ menuitem.name | translate }}</span>
+          <span fxFlex></span>
+          <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
+          <mat-icon class="menu-caret">arrow_drop_down</mat-icon>
+        </a>
+        <a appAccordionToggle class="relative" >
+          <mat-icon></mat-icon>
+          <span>DOCUMENTACION</span>
           <span fxFlex></span>
           <span class="menu-badge mat-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
           <mat-icon class="menu-caret">arrow_drop_down</mat-icon>
